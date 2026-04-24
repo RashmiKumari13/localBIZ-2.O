@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useParams, useNavigate } from 'react-router-dom';
 import { Search, ShoppingBag, Shirt, Cross, Wrench, Utensils, MapPin, Pill, Stethoscope, Hospital, Activity, Eye, Phone, Clock, Globe, ArrowLeft, Star, CheckCircle, Info, ChevronRight } from 'lucide-react';
 
-// ==========================================================
+//==========================================================
 // 1. DATA LAYER
 // ==========================================================
 
@@ -324,33 +324,36 @@ const Login = () => {
 };
 
 // --- HOME PAGE ---
+// --- HOME PAGE (Updated Hero) ---
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const featuredShops = MOCK_SHOPS_DATA.sort(() => 0.5 - Math.random()).slice(0, 4);
 
   return (
     <div className="animate-fade-in bg-[#fff9ec] min-h-screen">
-      {/* Gorgeous Gradient Overlay Hero Section */}
-      <div className="relative py-32 px-4 text-center text-[#fff9ec] shadow-xl overflow-hidden">
-        {/* Background Image */}
+      {/* Clean Background Image Hero */}
+      <div className="relative py-32 px-4 text-center text-[#fff9ec] shadow-xl overflow-hidden min-h-[600px] flex items-center">
+        {/* Background Image - Now fully visible */}
         <div 
-          className="absolute inset-0 bg-cover bg-center" 
-          style={{ backgroundImage: "url('/shops/hero-bg.jpg')" }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+          style={{ backgroundImage: "url('/shops/hero-bg3.jpg')" }}
         ></div>
-        {/* Modern Palette Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#5d2a42]/95 via-[#5d2a42]/90 to-[#fb6376]/80 z-10 backdrop-blur-[2px]"></div>
+        
+        {/* Subtle Dark Overlay (Only to make text readable, no blur) */}
+        <div className="absolute inset-0 bg-black/30 z-10"></div>
         
         <div className="relative z-20 max-w-4xl mx-auto flex flex-col items-center">
-          <span className="px-4 py-1.5 bg-[#ffdccc]/20 backdrop-blur-md border border-[#ffdccc]/30 rounded-full text-[#ffdccc] text-sm font-bold mb-6 tracking-wide uppercase">Your Local Directory</span>
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight drop-shadow-lg leading-tight">
+    
+          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight drop-shadow-2xl leading-tight text-white">
             Support Local <br className="hidden md:block"/> Businesses
           </h1>
-          <p className="text-[#ffdccc] text-xl mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
+          <p className="text-white text-xl mb-12 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-md">
             Discover groceries, top-rated fashion, elite healthcare, and premium services right in your locality.
           </p>
+          
+          {/* Search Bar */}
           <div className="relative w-full max-w-3xl mx-auto shadow-2xl rounded-2xl group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#fcb1a6] to-[#fb6376] rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
-            <div className="relative flex items-center bg-[#fff9ec] rounded-2xl p-2 border-2 border-[#fff9ec]">
+            <div className="relative flex items-center bg-white rounded-2xl p-2">
               <Search className="text-[#fb6376] ml-4 mr-2" size={28} />
               <input 
                 type="text" 
@@ -366,6 +369,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {/* ... rest of your categories and featured shops code ... */}
 
       <div className="max-w-7xl mx-auto px-4 mb-16 mt-16">
         <div className="flex justify-between items-end mb-8">
@@ -409,22 +413,30 @@ const Home = () => {
 };
 
 // --- HEALTHCARE PORTAL PAGE ---
+// --- HEALTHCARE PORTAL PAGE (Updated Header) ---
 const HealthcarePortal = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const filteredShops = activeCategory === 'all' ? MOCK_SHOPS_DATA.filter(shop => shop.category === 'healthcare') : MOCK_SHOPS_DATA.filter(shop => shop.category === 'healthcare' && shop.subCategory === activeCategory);
 
   return (
     <div className="animate-fade-in bg-[#fff9ec] min-h-screen pb-24">
-      {/* Palette Healthcare Header */}
-      <div className="bg-[#5d2a42] py-16 px-4 text-center text-[#fff9ec] shadow-lg relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-        <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#fb6376] rounded-full blur-[80px] opacity-40"></div>
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="inline-flex p-3 bg-[#fb6376] rounded-2xl mb-6 shadow-inner border border-[#fcb1a6]/50">
-            <Cross size={48} className="text-[#fff9ec]" />
+      {/* Health Portal Background Image Header */}
+      <div className="relative py-24 px-4 text-center text-white shadow-lg overflow-hidden">
+        {/* Background Image xyz.jpg */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center" 
+          style={{ backgroundImage: "url('/shops/hero-bg4.jpg')" }}
+        ></div>
+        
+        {/* Minimal Overlay for Contrast */}
+        <div className="absolute inset-0 bg-[#5d2a42]/40 z-10"></div>
+
+        <div className="max-w-4xl mx-auto relative z-20">
+          <div className="inline-flex p-3 bg-[#fb6376] rounded-2xl mb-6 shadow-lg">
+            <Cross size={48} className="text-white" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-black mb-4 tracking-tight drop-shadow-md">Dedicated Health Portal</h1>
-          <p className="text-[#ffdccc] text-xl max-w-2xl mx-auto font-medium">Find trusted pharmacies, leading clinics, and specialist hospitals near you.</p>
+          <h1 className="text-4xl md:text-6xl font-black mb-4 tracking-tight drop-shadow-xl">Dedicated Health Portal</h1>
+          <p className="text-white text-xl max-w-2xl mx-auto font-semibold drop-shadow-md">Find trusted pharmacies, leading clinics, and specialist hospitals near you.</p>
         </div>
       </div>
 
