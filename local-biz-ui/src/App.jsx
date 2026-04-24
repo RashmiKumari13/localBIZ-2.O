@@ -44,13 +44,13 @@ const MOCK_SHOPS_DATA = [
 const CATEGORIES = [
   { id: 'grocery', name: 'Grocery', icon: <ShoppingBag size={32} />, color: 'text-emerald-600 bg-emerald-50' },
   { id: 'fashion', name: 'Fashion', icon: <Shirt size={32} />, color: 'text-purple-600 bg-purple-50' },
-  { id: 'healthcare', name: 'Healthcare', icon: <Cross size={32} />, color: 'text-red-600 bg-red-50' },
+  { id: 'healthcare', name: 'Healthcare', icon: <Cross size={32} />, color: 'text-pink-600 bg-pink-50' },
   { id: 'services', name: 'Services', icon: <Wrench size={32} />, color: 'text-blue-600 bg-blue-50' },
   { id: 'restaurants', name: 'Restaurants', icon: <Utensils size={32} />, color: 'text-orange-600 bg-orange-50' },
 ];
 
 const HEALTH_CATEGORIES = [
-  { id: 'all', name: 'All Healthcare', icon: <Cross size={32} />, color: 'text-red-600 bg-red-50' },
+  { id: 'all', name: 'All Healthcare', icon: <Cross size={32} />, color: 'text-pink-600 bg-pink-50' },
   { id: 'pharmacy', name: 'Pharmacies', icon: <Pill size={32} />, color: 'text-blue-600 bg-blue-50' },
   { id: 'clinics', name: 'General Clinics', icon: <Stethoscope size={32} />, color: 'text-emerald-600 bg-emerald-50' },
   { id: 'orthopedics', name: 'Orthopedics', icon: <Activity size={32} />, color: 'text-purple-600 bg-purple-50' },
@@ -63,18 +63,18 @@ const HEALTH_CATEGORIES = [
 // ==========================================================
 
 const Navbar = () => (
-  <nav className="bg-white border-b border-gray-100 p-4 sticky top-0 z-50">
+  <nav className="bg-white border-b border-pink-100 p-4 sticky top-0 z-50">
     <div className="max-w-6xl mx-auto flex justify-between items-center">
-      <Link to="/" className="text-2xl font-extrabold text-gray-900 flex items-center gap-2">
-        <MapPin className="text-red-600" fill="currentColor" size={28} />
-        LocalConnect
+      <Link to="/" className="text-2xl font-extrabold text-black flex items-center gap-2">
+        <MapPin className="text-pink-500" fill="currentColor" size={28} />
+        LocalBIZ
       </Link>
-      <div className="hidden md:flex gap-6 text-gray-600 font-medium items-center">
-        <Link to="/" className="hover:text-red-600 transition-colors">Home</Link>
-        <Link to="/healthcare" className="flex items-center gap-1 text-red-600 font-bold bg-red-50 px-4 py-2 rounded-full hover:bg-red-100 transition-colors">
+      <div className="hidden md:flex gap-6 text-gray-700 font-medium items-center">
+        <Link to="/" className="hover:text-pink-600 transition-colors">Home</Link>
+        <Link to="/healthcare" className="flex items-center gap-1 text-pink-600 font-bold bg-pink-50 px-4 py-2 rounded-full hover:bg-pink-100 transition-colors">
            <Cross size={18} /> Health Portal
         </Link>
-        <Link to="/login" className="ml-4 bg-red-600 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-red-700 shadow-sm hover:shadow transition-all">
+        <Link to="/login" className="ml-4 bg-black text-white px-6 py-2.5 rounded-lg font-bold hover:bg-gray-800 shadow-sm hover:shadow transition-all">
           Login
         </Link>
       </div>
@@ -83,21 +83,20 @@ const Navbar = () => (
 );
 
 const ShopCard = ({ shop }) => (
-  <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col gap-3 group">
+  <div className="bg-white p-5 rounded-2xl border border-pink-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col gap-3 group">
     <div className="aspect-[4/3] w-full bg-gray-100 rounded-xl overflow-hidden mb-1">
       <img src={shop.image} alt={shop.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
     </div>
     <div className="flex justify-between items-start">
-      <h3 className="font-bold text-lg text-gray-900 group-hover:text-red-700 transition-colors line-clamp-1">{shop.name}</h3>
-      <span className={`text-xs font-bold px-3 py-1 rounded-full border shadow-sm flex-shrink-0 ${shop.status === '🟢 Open' ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : 'border-gray-200 bg-gray-50 text-gray-700'}`}>{shop.status}</span>
+      <h3 className="font-bold text-lg text-black group-hover:text-pink-600 transition-colors line-clamp-1">{shop.name}</h3>
+      <span className={`text-xs font-bold px-3 py-1 rounded-full border shadow-sm flex-shrink-0 ${shop.status === '🟢 Open' ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-gray-200 bg-gray-50 text-gray-600'}`}>{shop.status}</span>
     </div>
     <div className="flex flex-col gap-2 text-sm text-gray-600">
-      <span className="flex items-center gap-2"><MapPin size={16} className="text-red-500"/> {shop.locality}</span>
+      <span className="flex items-center gap-2"><MapPin size={16} className="text-pink-500"/> {shop.locality}</span>
       <span className="flex items-center gap-2"><Phone size={16} className="text-blue-500"/> {shop.phone}</span>
       <span className="flex items-center gap-2"><Clock size={16} className="text-orange-500"/> {shop.openingTime} - {shop.closingTime}</span>
     </div>
-    {/* UPDATED: Navigates to local details page instead of external URL */}
-    <Link to={`/shop/${shop.id}`} className="mt-2 w-full py-2 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors text-center text-sm flex items-center justify-center gap-2">
+    <Link to={`/shop/${shop.id}`} className="mt-2 w-full py-2 bg-black text-white font-bold rounded-lg hover:bg-gray-800 transition-colors text-center text-sm flex items-center justify-center gap-2">
       <Info size={16} /> View Details
     </Link>
   </div>
@@ -107,36 +106,35 @@ const ShopCard = ({ shop }) => (
 // 3. PAGE COMPONENTS
 // ==========================================================
 
-// --- NEW: SHOP DETAILS PAGE ---
+// --- SHOP DETAILS PAGE ---
 const ShopDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const shop = MOCK_SHOPS_DATA.find(s => s.id === parseInt(id));
 
   if (!shop) {
-    return <div className="p-20 text-center text-2xl font-bold">Shop not found!</div>;
+    return <div className="p-20 text-center text-2xl font-bold text-black">Shop not found!</div>;
   }
 
-  // Mock days array for the Hours section
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   return (
-    <div className="animate-fade-in bg-gray-50 min-h-screen pb-16">
+    <div className="animate-fade-in bg-pink-50/50 min-h-screen pb-16">
       {/* Hero Section */}
-      <div className="bg-gray-900 w-full h-64 md:h-80 relative">
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+      <div className="bg-black w-full h-64 md:h-80 relative">
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
         <img src={shop.image} alt={shop.name} className="w-full h-full object-cover" />
         
-        <div className="absolute z-20 bottom-0 left-0 w-full p-6 md:p-10 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent">
+        <div className="absolute z-20 bottom-0 left-0 w-full p-6 md:p-10 bg-gradient-to-t from-black via-black/80 to-transparent">
           <div className="max-w-6xl mx-auto">
-            <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-white/80 hover:text-white mb-4 text-sm font-medium transition-colors">
+            <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-white/80 hover:text-pink-400 mb-4 text-sm font-medium transition-colors">
               <ArrowLeft size={16} /> Back to results
             </button>
             <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-4">
               <div>
                 <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-2">{shop.name}</h1>
                 <div className="flex flex-wrap items-center gap-3 text-white/90 font-medium">
-                  <div className="flex items-center gap-1 bg-yellow-500 text-gray-900 px-2 py-0.5 rounded text-sm font-bold">
+                  <div className="flex items-center gap-1 bg-yellow-400 text-black px-2 py-0.5 rounded text-sm font-bold">
                     {shop.rating} <Star size={14} fill="currentColor" />
                   </div>
                   <span>({shop.reviews} reviews)</span>
@@ -147,7 +145,7 @@ const ShopDetails = () => {
                 </div>
               </div>
               <div className="flex flex-col items-start md:items-end gap-2">
-                <span className={`text-sm font-bold px-4 py-1.5 rounded-full border shadow-sm ${shop.status === '🟢 Open' ? 'border-emerald-400/30 bg-emerald-500/20 text-emerald-400' : 'border-gray-400/30 bg-gray-500/20 text-gray-300'}`}>
+                <span className={`text-sm font-bold px-4 py-1.5 rounded-full border shadow-sm ${shop.status === '🟢 Open' ? 'border-emerald-400/30 bg-emerald-500/20 text-emerald-400' : 'border-gray-500/30 bg-gray-600/50 text-gray-300'}`}>
                   {shop.status}
                 </span>
                 <span className="text-white/80 text-sm font-medium flex items-center gap-1">
@@ -160,38 +158,33 @@ const ShopDetails = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* Left Column (Main Content) */}
+        {/* Left Column */}
         <div className="lg:col-span-2 flex flex-col gap-8">
-          
-          {/* About the Business */}
-          <section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">About the Business</h2>
+          <section className="bg-white p-6 rounded-2xl shadow-sm border border-pink-100">
+            <h2 className="text-xl font-bold text-black mb-4 border-b border-pink-50 pb-3">About the Business</h2>
             <p className="text-gray-700 leading-relaxed">{shop.about}</p>
           </section>
 
-          {/* Items / Menu */}
-          <section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">Available Here</h2>
+          <section className="bg-white p-6 rounded-2xl shadow-sm border border-pink-100">
+            <h2 className="text-xl font-bold text-black mb-4 border-b border-pink-50 pb-3">Available Here</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {shop.items.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 border border-gray-100">
-                  <CheckCircle size={14} className="text-red-500" /> {item}
+                <div key={idx} className="flex items-center gap-2 bg-pink-50/50 px-3 py-2 rounded-lg text-sm font-medium text-gray-800 border border-pink-100">
+                  <CheckCircle size={14} className="text-pink-500" /> {item}
                 </div>
               ))}
             </div>
           </section>
 
-          {/* Recommended Reviews Mockup */}
-          <section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-             <h2 className="text-xl font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">Recommended Reviews</h2>
+          <section className="bg-white p-6 rounded-2xl shadow-sm border border-pink-100">
+             <h2 className="text-xl font-bold text-black mb-4 border-b border-pink-50 pb-3">Recommended Reviews</h2>
              <div className="flex flex-col gap-6">
-               <div className="border-b border-gray-50 pb-6 last:border-0 last:pb-0">
+               <div className="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
                  <div className="flex items-center gap-3 mb-2">
-                   <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">A</div>
+                   <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center font-bold text-white">A</div>
                    <div>
-                     <p className="font-bold text-gray-900 text-sm">Anonymous User</p>
-                     <div className="flex text-yellow-400">
+                     <p className="font-bold text-black text-sm">Anonymous User</p>
+                     <div className="flex text-yellow-500">
                        <Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12}/>
                      </div>
                    </div>
@@ -200,101 +193,94 @@ const ShopDetails = () => {
                </div>
              </div>
           </section>
-
         </div>
 
-        {/* Right Column (Sidebar) */}
+        {/* Right Column */}
         <div className="flex flex-col gap-8">
-          
-          {/* Location & Hours */}
-          <section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">Location & Hours</h2>
-            <div className="flex items-start gap-3 mb-6 bg-red-50 p-4 rounded-xl border border-red-100">
-              <MapPin className="text-red-600 mt-1 flex-shrink-0" size={20} />
+          <section className="bg-white p-6 rounded-2xl shadow-sm border border-pink-100">
+            <h2 className="text-xl font-bold text-black mb-4 border-b border-pink-50 pb-3">Location & Hours</h2>
+            <div className="flex items-start gap-3 mb-6 bg-pink-50 p-4 rounded-xl border border-pink-100">
+              <MapPin className="text-pink-600 mt-1 flex-shrink-0" size={20} />
               <div>
-                <p className="font-bold text-gray-900">{shop.name}</p>
-                <p className="text-gray-600 text-sm">{shop.locality}</p>
-                <p className="text-gray-500 text-xs mt-1">Get directions</p>
+                <p className="font-bold text-black">{shop.name}</p>
+                <p className="text-gray-700 text-sm">{shop.locality}</p>
+                <p className="text-pink-600 font-medium text-xs mt-1 cursor-pointer">Get directions</p>
               </div>
             </div>
 
             <div className="flex flex-col gap-2 text-sm">
               {days.map((day) => (
                 <div key={day} className="flex justify-between items-center py-1 border-b border-gray-50 last:border-0">
-                  <span className="font-medium text-gray-700 w-12">{day}</span>
+                  <span className="font-medium text-black w-12">{day}</span>
                   <span className="text-gray-600">{shop.openingTime} - {shop.closingTime}</span>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* Contact & Amenities */}
-          <section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">Contact & Details</h2>
-            
+          <section className="bg-white p-6 rounded-2xl shadow-sm border border-pink-100">
+            <h2 className="text-xl font-bold text-black mb-4 border-b border-pink-50 pb-3">Contact & Details</h2>
             <div className="flex flex-col gap-4 mb-6">
-               <div className="flex items-center gap-3 text-gray-700 font-medium">
-                 <Phone className="text-blue-500" size={18} /> {shop.phone}
+               <div className="flex items-center gap-3 text-gray-800 font-medium">
+                 <Phone className="text-black" size={18} /> {shop.phone}
                </div>
             </div>
 
-            <h3 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Amenities and More</h3>
+            <h3 className="text-sm font-bold text-black mb-3 uppercase tracking-wider">Amenities and More</h3>
             <ul className="flex flex-col gap-2">
               {shop.amenities.map((amenity, idx) => (
                 <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
-                  <CheckCircle size={14} className="text-emerald-500" /> {amenity}
+                  <CheckCircle size={14} className="text-pink-500" /> {amenity}
                 </li>
               ))}
             </ul>
           </section>
         </div>
-
       </div>
     </div>
   );
 };
 
-
 // --- LOGIN PAGE ---
 const Login = () => {
   return (
-    <div className="animate-fade-in min-h-[85vh] flex items-center justify-center bg-gray-50 px-4 py-12">
-      <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-gray-100 w-full max-w-md">
+    <div className="animate-fade-in min-h-[85vh] flex items-center justify-center bg-pink-50/50 px-4 py-12">
+      <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-pink-100 w-full max-w-md">
         
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-50 text-red-600 mb-4 border border-red-100 shadow-sm">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-pink-50 text-pink-600 mb-4 border border-pink-100 shadow-sm">
             <MapPin size={32} />
           </div>
-          <h2 className="text-3xl font-extrabold text-gray-900">Welcome Back</h2>
+          <h2 className="text-3xl font-extrabold text-black">Welcome Back</h2>
           <p className="text-gray-500 mt-2 font-medium">Log in to manage your local business</p>
         </div>
         
         <form className="flex flex-col gap-5">
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
+            <label className="block text-sm font-bold text-black mb-2">Email Address</label>
             <input 
               type="email" 
               placeholder="admin@localconnect.com" 
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all bg-gray-50 focus:bg-white" 
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all bg-white text-gray-900 placeholder-gray-400" 
             />
           </div>
           
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label className="block text-sm font-bold text-gray-700">Password</label>
-              <a href="#" className="text-sm font-bold text-red-600 hover:text-red-700 transition-colors">Forgot Password?</a>
+              <label className="block text-sm font-bold text-black">Password</label>
+              <a href="#" className="text-sm font-bold text-pink-600 hover:text-pink-700 transition-colors">Forgot Password?</a>
             </div>
             <input 
               type="password" 
               placeholder="••••••••" 
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all bg-gray-50 focus:bg-white" 
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all bg-white text-gray-900 placeholder-gray-400" 
             />
           </div>
 
           <button 
             type="button" 
             onClick={(e) => e.preventDefault()}
-            className="w-full py-3.5 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition-colors shadow-md mt-4 text-lg"
+            className="w-full py-3.5 bg-black text-white font-bold rounded-xl hover:bg-gray-800 transition-colors shadow-md mt-4 text-lg"
           >
             Log In
           </button>
@@ -302,7 +288,7 @@ const Login = () => {
 
         <div className="mt-8 pt-6 border-t border-gray-100 text-center">
           <p className="text-gray-600 font-medium">
-            Don't have an account? <a href="#" className="text-red-600 font-bold hover:text-red-700 hover:underline transition-colors">Sign up as an Admin</a>
+            Don't have an account? <a href="#" className="text-pink-600 font-bold hover:text-pink-700 hover:underline transition-colors">Sign up as an Admin</a>
           </p>
         </div>
 
@@ -317,35 +303,37 @@ const Home = () => {
   const featuredShops = MOCK_SHOPS_DATA.sort(() => 0.5 - Math.random()).slice(0, 4);
 
   return (
-    <div className="animate-fade-in">
-      <div className="bg-red-700 py-16 px-4 text-center text-white mb-12 shadow-md">
-        <div className="max-w-4xl mx-auto">
+    <div className="animate-fade-in bg-white min-h-screen">
+      {/* Hero Section with dark overlay for the "Little Black" requirement */}
+      <div className="relative py-24 px-4 text-center text-white mb-12 shadow-md bg-cover bg-center" style={{ backgroundImage: "url('/shops/hero-bg.jpg')" }}>
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        <div className="relative z-20 max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Support Local Businesses</h1>
-          <p className="text-red-100 text-lg mb-10 max-w-2xl mx-auto font-medium">
+          <p className="text-pink-100 text-lg mb-10 max-w-2xl mx-auto font-medium">
             Discover groceries, fashion, healthcare, and services right in your locality.
           </p>
           <div className="relative max-w-2xl mx-auto shadow-2xl rounded-full">
             <input 
               type="text" 
               placeholder="Search for a shop, service, or locality..." 
-              className="w-full py-4 pl-14 pr-4 rounded-full text-gray-900 focus:outline-none focus:ring-4 focus:ring-red-400/50 transition-all text-lg font-medium"
+              className="w-full py-4 pl-14 pr-4 rounded-full bg-white border border-gray-200 text-black placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-pink-400/50 transition-all text-lg font-medium"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-red-600" size={24} />
+            <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-pink-600" size={24} />
           </div>
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 mb-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Browse by Category</h2>
+        <h2 className="text-2xl font-bold text-black mb-6">Browse by Category</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
           {CATEGORIES.map((cat) => (
-            <Link key={cat.id} to={cat.id === 'healthcare' ? '/healthcare' : `/category/${cat.id}`} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-center gap-4 border border-gray-100 hover:border-red-200 group cursor-pointer">
-              <div className={`p-4 rounded-full ${cat.color} group-hover:scale-110 group-hover:bg-red-50 group-hover:text-red-600 transition-all duration-300`}>{cat.icon}</div>
+            <Link key={cat.id} to={cat.id === 'healthcare' ? '/healthcare' : `/category/${cat.id}`} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-center gap-4 border border-pink-100 hover:border-pink-300 group cursor-pointer">
+              <div className={`p-4 rounded-full ${cat.color} group-hover:scale-110 group-hover:bg-pink-100 group-hover:text-pink-600 transition-all duration-300`}>{cat.icon}</div>
               <div className="text-center">
-                <span className="font-bold text-gray-800 block">{cat.name}</span>
-                <span className="text-xs text-gray-500 mt-1 block group-hover:text-red-500 transition-colors">View shops</span>
+                <span className="font-bold text-black block">{cat.name}</span>
+                <span className="text-xs text-gray-500 mt-1 block group-hover:text-pink-600 transition-colors">View shops</span>
               </div>
             </Link>
           ))}
@@ -353,7 +341,7 @@ const Home = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 mb-16">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Shops</h2>
+        <h2 className="text-2xl font-bold text-black mb-6">Featured Shops</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {featuredShops.map(shop => (
             <ShopCard key={shop.id} shop={shop} />
@@ -370,60 +358,61 @@ const HealthcarePortal = () => {
   const filteredShops = activeCategory === 'all' ? MOCK_SHOPS_DATA.filter(shop => shop.category === 'healthcare') : MOCK_SHOPS_DATA.filter(shop => shop.category === 'healthcare' && shop.subCategory === activeCategory);
 
   return (
-    <div className="animate-fade-in bg-gray-50 min-h-screen pb-16">
-      <div className="bg-red-700 py-12 px-4 text-center text-white mb-10 shadow-md border-b border-red-800">
+    <div className="animate-fade-in bg-pink-50/50 min-h-screen pb-16">
+      {/* Black Hero block for bold contrast */}
+      <div className="bg-black py-12 px-4 text-center text-white mb-10 shadow-md border-b border-gray-900">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight flex items-center justify-center gap-3"><Cross size={40} className="text-white" /> Dedicated Health Portal</h1>
-          <p className="text-red-100 text-lg max-w-2xl mx-auto font-medium">Find trusted pharmacies, clinics, specialists, and hospitals near you.</p>
+          <h1 className="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight flex items-center justify-center gap-3"><Cross size={40} className="text-pink-500" /> Dedicated Health Portal</h1>
+          <p className="text-pink-100 text-lg max-w-2xl mx-auto font-medium">Find trusted pharmacies, clinics, specialists, and hospitals near you.</p>
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Browse by Health Category</h2>
+        <h2 className="text-2xl font-bold text-black mb-6">Browse by Health Category</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
           {HEALTH_CATEGORIES.map((cat) => (
-            <button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`bg-white p-5 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-center gap-4 border outline-none ${activeCategory === cat.id ? 'border-red-500 ring-4 ring-red-100 scale-105 shadow-xl' : 'border-gray-100 hover:border-red-200'}`}>
+            <button key={cat.id} onClick={() => setActiveCategory(cat.id)} className={`bg-white p-5 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-center gap-4 border outline-none ${activeCategory === cat.id ? 'border-pink-500 ring-4 ring-pink-100 scale-105 shadow-xl' : 'border-pink-100 hover:border-pink-300'}`}>
               <div className={`p-4 rounded-full ${cat.color} group-hover:scale-110 transition-all duration-300`}>{cat.icon}</div>
-              <span className="font-bold text-gray-900 text-sm text-center">{cat.name}</span>
+              <span className="font-bold text-black text-sm text-center">{cat.name}</span>
             </button>
           ))}
         </div>
 
-        <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 flex items-center justify-between border-b border-gray-100 pb-5">
+        <div className="bg-white p-8 rounded-2xl border border-pink-100 shadow-sm mb-12">
+          <h2 className="text-2xl font-bold text-black mb-8 flex items-center justify-between border-b border-pink-50 pb-5">
             {HEALTH_CATEGORIES.find(c => c.id === activeCategory)?.name} Listings
-            <span className="text-sm font-bold text-gray-600 bg-gray-100 px-4 py-2 rounded-full border border-gray-200">{filteredShops.length} Results</span>
+            <span className="text-sm font-bold text-gray-700 bg-pink-50 px-4 py-2 rounded-full border border-pink-100">{filteredShops.length} Results</span>
           </h2>
 
           {filteredShops.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {filteredShops.map(shop => (
-                <div key={shop.id} className="bg-gray-50/50 p-6 rounded-2xl border border-gray-100 hover:border-red-200 hover:bg-white hover:shadow-lg transition-all duration-300 flex flex-col gap-4 group">
+                <div key={shop.id} className="bg-white p-6 rounded-2xl border border-gray-100 hover:border-pink-400 hover:shadow-lg transition-all duration-300 flex flex-col gap-4 group">
                   <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div className="w-20 h-20 bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-inner flex-shrink-0">
+                    <div className="w-20 h-20 bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 shadow-inner flex-shrink-0">
                       <img src={shop.image} alt={shop.name} className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-grow flex flex-col gap-2">
                       <div className="flex justify-between items-center gap-3">
-                        <h3 className="font-bold text-xl text-gray-900 group-hover:text-red-700 transition-colors line-clamp-1">{shop.name}</h3>
-                        <span className={`text-xs font-bold px-3 py-1 rounded-full border shadow-sm flex-shrink-0 ${shop.status === '🟢 Open' ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : 'border-gray-200 bg-gray-50 text-gray-700'}`}>{shop.status}</span>
+                        <h3 className="font-bold text-xl text-black group-hover:text-pink-600 transition-colors line-clamp-1">{shop.name}</h3>
+                        <span className={`text-xs font-bold px-3 py-1 rounded-full border shadow-sm flex-shrink-0 ${shop.status === '🟢 Open' ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : 'border-gray-200 bg-gray-50 text-gray-600'}`}>{shop.status}</span>
                       </div>
-                      <span className="flex items-center gap-2 text-sm text-gray-600 font-medium"><MapPin size={16} className="text-red-500"/> {shop.locality}</span>
+                      <span className="flex items-center gap-2 text-sm text-gray-600 font-medium"><MapPin size={16} className="text-pink-500"/> {shop.locality}</span>
                     </div>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-2 border-t border-gray-100 pt-4">
-                    <span className="flex items-center gap-2 text-sm text-gray-600 bg-white border border-gray-100 px-3 py-2 rounded-lg flex-1">📞 {shop.phone}</span>
-                    <span className="flex items-center gap-2 text-sm text-gray-600 bg-white border border-gray-100 px-3 py-2 rounded-lg flex-1"><Clock size={16} className="text-orange-500"/> {shop.openingTime} - {shop.closingTime}</span>
+                    <span className="flex items-center gap-2 text-sm text-gray-700 bg-gray-50 border border-gray-100 px-3 py-2 rounded-lg flex-1">📞 {shop.phone}</span>
+                    <span className="flex items-center gap-2 text-sm text-gray-700 bg-gray-50 border border-gray-100 px-3 py-2 rounded-lg flex-1"><Clock size={16} className="text-orange-500"/> {shop.openingTime} - {shop.closingTime}</span>
                   </div>
-                  <Link to={`/shop/${shop.id}`} className="mt-2 w-full py-3 bg-white border-2 border-red-200 text-red-700 font-bold rounded-xl hover:bg-red-50 transition-colors text-center text-md flex items-center justify-center gap-2"><Info size={18} /> View Details</Link>
+                  <Link to={`/shop/${shop.id}`} className="mt-2 w-full py-3 bg-black border border-black text-white font-bold rounded-xl hover:bg-gray-800 transition-colors text-center text-md flex items-center justify-center gap-2"><Info size={18} /> View Details</Link>
                 </div>
               ))}
             </div>
           ) : (
             <div className="py-16 text-center flex flex-col items-center justify-center">
-              <div className="bg-gray-100 p-8 rounded-full mb-6 border border-gray-200 shadow-inner"><Search size={64} className="text-gray-400" /></div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">No facilities found</h3>
-              <p className="text-gray-600 text-lg max-w-md font-medium">We couldn't find any listings for <strong>{HEALTH_CATEGORIES.find(c => c.id === activeCategory)?.name}</strong> yet.</p>
+              <div className="bg-pink-50 p-8 rounded-full mb-6 border border-pink-100 shadow-inner"><Search size={64} className="text-pink-300" /></div>
+              <h3 className="text-2xl font-bold text-black mb-3">No facilities found</h3>
+              <p className="text-gray-500 text-lg max-w-md font-medium">We couldn't find any listings for <strong>{HEALTH_CATEGORIES.find(c => c.id === activeCategory)?.name}</strong> yet.</p>
             </div>
           )}
         </div>
@@ -439,10 +428,10 @@ const CategoryPage = () => {
   const filteredShops = MOCK_SHOPS_DATA.filter(shop => shop.category === id);
 
   return (
-    <div className="animate-fade-in bg-gray-50 min-h-screen pb-16">
+    <div className="animate-fade-in bg-pink-50/50 min-h-screen pb-16">
       <div className="max-w-6xl mx-auto px-4 pt-10">
-        <h1 className="text-3xl font-extrabold text-gray-900 mb-2">{categoryName} Shops</h1>
-        <p className="text-gray-600 text-lg font-medium mb-10 border-b border-gray-200 pb-4">Browse all available {categoryName?.toLowerCase()} businesses in your locality.</p>
+        <h1 className="text-3xl font-extrabold text-black mb-2">{categoryName} Shops</h1>
+        <p className="text-gray-600 text-lg font-medium mb-10 border-b border-pink-100 pb-4">Browse all available {categoryName?.toLowerCase()} businesses in your locality.</p>
 
         {filteredShops.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -451,10 +440,10 @@ const CategoryPage = () => {
             ))}
           </div>
         ) : (
-          <div className="bg-white p-16 rounded-2xl border border-gray-100 text-center flex flex-col items-center justify-center">
-            <div className="bg-gray-100 p-8 rounded-full mb-6 border border-gray-200 shadow-inner"><Search size={64} className="text-gray-400" /></div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">No shops found</h3>
-            <p className="text-gray-600 text-lg max-w-md font-medium">We couldn't find any listings for <strong>{categoryName}</strong> in your locality yet.</p>
+          <div className="bg-white p-16 rounded-2xl border border-pink-100 text-center flex flex-col items-center justify-center">
+            <div className="bg-pink-50 p-8 rounded-full mb-6 border border-pink-100 shadow-inner"><Search size={64} className="text-pink-300" /></div>
+            <h3 className="text-2xl font-bold text-black mb-3">No shops found</h3>
+            <p className="text-gray-500 text-lg max-w-md font-medium">We couldn't find any listings for <strong>{categoryName}</strong> in your locality yet.</p>
           </div>
         )}
       </div>
@@ -466,7 +455,7 @@ const CategoryPage = () => {
 export default function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-gray-50/50">
+      <div className="min-h-screen flex flex-col bg-white text-gray-900">
         <Navbar />
         <main className="flex-grow">
           <Routes>
